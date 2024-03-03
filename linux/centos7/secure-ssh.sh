@@ -17,11 +17,11 @@ username="$1"
 
 # Create a user that uses passwordless authentication
 
-sudo useradd -m -s /bin/bash "username"
+sudo useradd -m -d /home/"$username" -s /bin/bash "$username"
 sudo mkdir -p /home/"$username"/.ssh
-sudo cp /home/ChadbourSYS-265/linux/public-keys/id_rsa.pub /home/"$username"/.ssh/authorized_keys
+sudo cp /home/echadbourne/ChadbourneSYS-265/linux/public-keys/id_rsa.pub /home/"$username"/.ssh/authorized_keys
 sudo chmod 700 /home/"$username"/.ssh
 sudo chmod 600 /home/"$username"/.ssh/authorized_keys
 sudo chown -R "$username:$username" /home/"$username"/.ssh
 
-echo "User '$username' has been created passwordless with the associeted key"
+echo "User '$username' has been created passwordless with the associated key"
