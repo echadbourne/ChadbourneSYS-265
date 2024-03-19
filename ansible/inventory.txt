@@ -1,0 +1,9 @@
+[dashy]
+ansible01-elizabeth
+[webmin]
+ansible02-elizabeth
+[windows]
+mgmt01-elizabeth
+wks01-elizabeth
+[windows:vars]
+ansible_shell_type=powershell

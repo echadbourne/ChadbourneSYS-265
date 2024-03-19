@@ -1,0 +1,45 @@
+#Created by Matt Compton, used by Elizabeth Chadbourne
+- name: "Install Dashy"
+  become: true
+  hosts: dashy
+
+  roles:
+    - role: geerlingguy.git
+    #- role: geerlingguy.nodejs
+    #  vars:
+    #    nodejs_version: "16.x"
+    - role: ocha.yarn
+    - role: pmoscode.dashy
+      vars:
+        dashy_page_title: Rat Man Page
+        dashy_page_description: Wahooo
+        dashy_page_nav_links:
+          - title: Git
+            path: https://git.goober.cloud/matt
+          - title: Techjournal
+            path: https://mattcompton.dev
+        dashy_page_sections:
+          - name: Apps
+            icon: fas fa-shapes
+            items:
+              - title: Dashy Live
+                description: Development a project management links for Dashy
+                icon: https://i.ibb.co/qWWpD0v/astro-dab-128.png
+                url: https://live.dashy.to/
+                target: newtab
+              - title: Showcase
+                description: See how others are using Dashy
+                url: https://github.com/Lissy93/dashy/blob/master/docs/showcase.md
+                icon: far fa-grin-hearts
+
+  tasks:
+    - name: add port to firewal
+      firewalld:
+        port: 8080/tcp
+        state: enabled
+        permanent: yes
+
+    - name: reload firewall
+      service:
+        name: firewalld
+        state: restarted      
